@@ -1,6 +1,6 @@
 <?php
 $emptyvalue = ""; 			// Переменная хранит пустое значение 
-$servername = "https://github.com/Soul181/test";  // Имя Хост Доменное имя
+$servername = "Soul181/test";  // Имя Хост Доменное имя
 $username = "root";         // Имя созданного вами пользователя
 $password = "root";         // Пароль пользователя 
 $database = "db_url_mysql";     // Имя базы данных
