@@ -8,6 +8,7 @@ if (!$conn) // если нет соединения с БД, то
 	$log = date('Y-m-d H:i:s') . ' Ошибка подключения к базе данных MySQL'; // Дата/время сообщение ошибка подключения
 	$file = 'log.log'; // название файла в переменную
 	file_put_contents($file, $log . PHP_EOL, FILE_APPEND);
+	header ('Location: error.html');
 	exit();	
 	}
 mysqli_set_charset($conn, "utf8"); // установка кодировки
