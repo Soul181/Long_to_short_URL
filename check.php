@@ -1,5 +1,5 @@
 <?php
-require_once'install.php'; // однократно подключаем файла
+require_once 'install.php'; // однократно подключаем файла
 include 'vars.php';
 date_default_timezone_set('Europe/Moscow'); // Устанавливаем часовой пояс
 
