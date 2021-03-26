@@ -1,6 +1,6 @@
 <?php
 $emptyvalue = ""; 			// Переменная хранит пустое значение 
-$servername = "localhost";  // Имя Хост Доменное имя
+$servername = "https://github.com/Soul181/test";  // Имя Хост Доменное имя
 $username = "root";         // Имя созданного вами пользователя
 $password = "root";         // Пароль пользователя 
 $database = "db_url_mysql";     // Имя базы данных
@@ -10,7 +10,7 @@ $trueword = 0; // Используется в цикле проверки сло
 $file = 'log.log'; // Название файла в переменную, файл хранит логи сайта
 $table_name = "long_to_short"; // Имя таблицы в БД    long_to_short
 $event_db_name = "del_15_days"; // название события БД
-$ip_domen = "127.0.0.1"; // ip домена???
+$ip_domen = "https://github.com/Soul181/test"; // ip домена???
 $timeout_del = 1296000; // срок действия ссылки 1296000 это 15 суток в секундах 
 
 
