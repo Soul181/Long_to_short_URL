@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta charset="utf-8">   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>  
+<script type="text/javascript"> 
+	let my_url = window.location.href; //получаю path из адресной строки
+	if (window.location.href == 'http://url/123123') 
+	{
+	window.location.replace = 'http://www.google.ru';
+		if (my_url.indexOf('http://url/') != -1) 
+		{
+		console.log(my_url);     // вывод  адресной строки
+		console.log("проверка"); // тестовая строка
+		let len_path = 7;        // желаемая длинна path совместно со '/'
+		console.log(len_path);   // тестовый вывод переменной
+		let my_path = window.location.pathname; // присвоение части path из полного url
+		console.log(my_path);    // тестовый вывод части path
+		let key = my_path.substr(-6,6); // присвоение шести последних символов и части path
+		console.log(key);        // тестовый вывод переменной - этих шести символов
+			if (my_path.length == len_path) // 7 это слеш плюс ключ
+			{
+			console.log(6);
+			//window.location.replace('http://url/check.php?key='+key);
+			window.location.href = 'http://www.google.ru';
+			}
+		}	
+	}
+</script>
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <title> Long-To-Short </title>
+	<style> 
+	body { background: url(back.jpg); } 
+	div { color: #fff; } 
+	</style>
+ </head>
+  <body>
+   <div  class="container mt-5">
+    <h2 align="center">Приветствуем Вас на нашем сайте по сокращению URL адреса!</h2>
+    <p>Для получения короткой URL ссылки Вам нужно в верхнее текстовое поле скопировать тот URL адрес, который Вы хотите сократить. Так же Вы можете ввести в нижнее текстовое поле желаемый короткий URL адрес. Вам нужно придумать сокращение из 6 символов. Для этого Вы можете использовать цифры от 0 до 9 и буквы латинского алфавита нижнего регистра. Если Вы не ввели желаемый короткий URL, сайт сгенерует для Вас новый. После этого нажмите на кнопку "Получить сокращенный URL" и скопируйте результат.</p>
+    <form method="post" id="ajax_form" action="">
+    <input type="text" name="longURL" id="longURL" placeholder="Введите URL" class="form-control"><br> 
+	<input class="container" type="submit" id="send" value="Получить сокращенный URL"><br><br>
+	<input type="text" name="shortURL" id="shortURL"  placeholder="Введите желаемый короткий URL, состоящий из 6 символов" class="form-control">
+    </form>
+	  <div>
+	  <p>Ниже появится результат:</p>
+	  <div id="result_form"></div> 
+	  </div>
+   </div>	
+<script> 
+
+$(document).ready(function() {
+    $("#send").click(
+		function(){
+			sendAjaxForm('result_form', 'shortURL', 'ajax_form', 'check.php');
+			return false; 
+		}
+	);
+});
+ 
+function sendAjaxForm(result_form, shortURL, ajax_form, url) 
+{
+		$.ajax({
+				url:     url, //url страницы
+				type:     "POST", //метод отправки
+				dataType: "json", //формат данных
+				data: $("#"+ajax_form).serialize(),  // Сеарилизуем объект
+					success: function(response) 
+					{ //Данные отправлены успешно или приняты успешно
+					console.log(response);
+					var total = response;	
+					console.log(total);
+					//////////////////////////
+let address = "url/";	// url адрес сайта
+					if (total.name == "successfully_added") 
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("Успешно добавлено на сайт! <br>Ссылке "+total.longURL+" соответствует сокращение  "+address+total.shortURL+"<br>Всего записей для добавления на сайт осталось:  "+total.countdata+"<br>Ссылка будет действовать до: "+total.timeout);
+						}
+					if (total.name == "match_found")          
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("Адрес, который вы ввели, уже хранится на сайте! <br>Ссылке "+total.longURL+" соответствует сокращение  "+address+total.shortURL+"<br>Всего записей для добавления на сайт осталось:  "+total.countdata+"<br>Ссылка будет действовать до: "+total.timeout);
+						}
+					if (total.name == "empty_request")        
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("Пожалуйста, введите URL в верхнее поле."+"<br>Всего записей для добавления на сайт осталось:  "+total.countdata);
+						}
+					if (total.name == "connect_db_error") 
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("Ошибка подключения к БД");
+						}
+					if (total.name == "enter_match_found") 
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("Пожалуйста, введите другое значение, так как <br>"+total.shortURL+" уже используется."+"<br>Всего записей для добавления на сайт осталось:  "+total.countdata);
+						}
+					if (total.name == "database_full")        
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("К сожалению места для добавления записей больше нет."+"<br>Всего записей для добавления на сайт осталось:  "+total.countdata);
+						}
+					if (total.name == "wrong_shortURL") 
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("Вы использовали неверные символы или неверное их количество в желаемом URL <br>"+total.shortURL+"<br>Всего записей для добавления на сайт осталось:  "+total.countdata);
+						}
+					if (total.name == "bad_longURL") 
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("URL сайта, который Вы ввели, "+total.longURL+" не существует, либо не отвечает, поэтому не может быть добавлен на сайт.<br>"+"<br>Всего записей для добавления на сайт осталось:  "+total.countdata);
+						} 
+					if (total.name == "get_info") // пока для примера, потом удалить
+						{
+						$('#longURL').val("");
+						$('#shortURL').val("");
+						$('#result_form').html("Вы ввели через адресную строку, "+total.shortURL);
+						} 
+					}
+				});			
+}				
+</script>   
+</body>
+</html>
+
+
+
+

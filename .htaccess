@@ -1,0 +1,14 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+ErrorDocument 403 /error.html
+ErrorDocument 404 /redirect.php
+
+
+
+
+
+
+
+
+
