@@ -1,12 +1,10 @@
 <?php
 include 'vars.php';
 date_default_timezone_set('Europe/Moscow'); // Устанавливаем часовой пояс
-mysqli_query("CREATE DATABASE $database"); // создаем новую БД имя 
-
 mysqli_query("CREATE USER '$username'@'$servername' IDENTIFIED BY '$password'");  // создание нового пользователя
 mysqli_query("GRANT ALL PRIVILEGES ON * . * TO '$username'@'$servername'");   // неограниченый доступ у пользователя
 mysqli_query("FLUSH PRIVILEGES"); // обновить, чтобы изменения вступили в силу
-
+mysqli_query("CREATE DATABASE $database"); // создаем новую БД имя
 
 $conn = new mysqli($servername, $username, $password); // Создаем новый класс mysqli
 if ($conn) // если успешно, то 
