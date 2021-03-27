@@ -3,9 +3,9 @@ include 'vars.php';
 date_default_timezone_set('Europe/Moscow'); // Устанавливаем часовой пояс
 mysqli_query("CREATE DATABASE $database"); // создаем новую БД имя 
 
-//CREATE USER 'novyi_polzovatel'@'localhost' IDENTIFIED BY 'parol';  // создание нового пользователя
-//GRANT ALL PRIVILEGES ON * . * TO 'novyi_polzovatel'@'localhost';   // неограниченый доступ у пользователя
-//FLUSH PRIVILEGES; // обновить, чтобы изменения вступили в силу
+mysqli_query("CREATE USER '$username'@'$servername' IDENTIFIED BY '$password'");  // создание нового пользователя
+mysqli_query("GRANT ALL PRIVILEGES ON * . * TO '$username'@'$servername'");   // неограниченый доступ у пользователя
+mysqli_query("FLUSH PRIVILEGES"); // обновить, чтобы изменения вступили в силу
 
 
 $conn = new mysqli($servername, $username, $password); // Создаем новый класс mysqli
