@@ -1,8 +1,8 @@
 <?php
 $emptyvalue = ""; 			// Переменная хранит пустое значение 
-$servername = "https://github.com/";  // Имя Хост Доменное имя
-$username = "root";         // Имя созданного вами пользователя
-$password = "root";         // Пароль пользователя 
+$servername = "https://soul181.github.io/" ;  // Имя Хост Доменное имя
+$username = "user";         // Имя созданного вами пользователя
+$password = "pass";         // Пароль пользователя 
 $database = "db_url_mysql";     // Имя базы данных
 $strword = 6; // Количество символов в рандом слове - короткий URL
 $allstring = "0123456789abcdefghijklmnopqrstuvwxyz"; // Исходная сторка символов, разрешенные символы для короткого URL 
