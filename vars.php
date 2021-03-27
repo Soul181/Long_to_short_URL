@@ -10,7 +10,7 @@ $trueword = 0; // Используется в цикле проверки сло
 $file = 'log.log'; // Название файла в переменную, файл хранит логи сайта
 $table_name = "long_to_short"; // Имя таблицы в БД    long_to_short
 $event_db_name = "del_15_days"; // название события БД
-$ip_domen = "https://github.com/Soul181/test"; // ip домена???
+$ip_domen = "https://soul181.github.io/"; // ip домена???
 $timeout_del = 1296000; // срок действия ссылки 1296000 это 15 суток в секундах 
 
 
