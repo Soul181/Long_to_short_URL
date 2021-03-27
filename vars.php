@@ -1,8 +1,8 @@
 <?php
 $emptyvalue = ""; 			// Переменная хранит пустое значение 
-$servername = "https://soul181.github.io/" ;  // Имя Хост Доменное имя
-$username = "user";         // Имя созданного вами пользователя
-$password = "pass";         // Пароль пользователя 
+$servername = "localhost" ;  // Имя Хост Доменное имя
+$username = "root";         // Имя созданного вами пользователя
+$password = "root";         // Пароль пользователя 
 $database = "db_url_mysql";     // Имя базы данных
 $strword = 6; // Количество символов в рандом слове - короткий URL
 $allstring = "0123456789abcdefghijklmnopqrstuvwxyz"; // Исходная сторка символов, разрешенные символы для короткого URL 
@@ -10,7 +10,7 @@ $trueword = 0; // Используется в цикле проверки сло
 $file = 'log.log'; // Название файла в переменную, файл хранит логи сайта
 $table_name = "long_to_short"; // Имя таблицы в БД    long_to_short
 $event_db_name = "del_15_days"; // название события БД
-$ip_domen = "https://soul181.github.io/"; // ip домена???
+$ip_domen = "localhost"; // ip домена???
 $timeout_del = 1296000; // срок действия ссылки 1296000 это 15 суток в секундах 
 
 
